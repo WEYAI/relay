@@ -10,13 +10,25 @@ mac_address_pattern = re.compile(r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$')
 
 for i in range(100):
     c = sys.stdin.readline()
-    print(c)
+    
     len_c = len(c)
-    print("len——c........................")
-    print(len_c)
     if len_c > 3:
-          data.append(c+"\n")  
-print(data)
+        line = c.split()
+        len_line = len(line)
+        if len_line > 4:
+            mac = line[0]
+            ssid = line[-1]
+            if line:
+                if mac_address_pattern.match(mac):
+                    ssid = ssid
+                    new_ssid = ssid.replace("\x1b[0k", "")
+                    data.append("["+mac+","+new_ssid+"]")
+                    
+                
+            
+
+data_set = set(data)
+print(data_set)
             
 
 

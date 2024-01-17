@@ -40,6 +40,9 @@ from gnuradio import qtgui
 class RKE_RELAY(gr.top_block, Qt.QWidget):
 
     def __init__(self):
+        aparse = argparse.ArgumentParser(description="Connection initiator test script for Sniffle BLE5 sniffer")
+        aparse.add_argument("-f", "--ubx_tx_freq", default=None, help="")
+        args = aparse.parse_args()
         gr.top_block.__init__(self, "RKE_RELAY")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("RKE_RELAY")
@@ -74,7 +77,8 @@ class RKE_RELAY(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.ubx_tx_gain = ubx_tx_gain = 30
-        self.ubx_tx_freq = ubx_tx_freq = 433.92e6
+        # self.ubx_tx_freq = ubx_tx_freq = 433.92e6
+        self.ubx_tx_freq = ubx_tx_freq = args.ubx_tx_freq
         self.ubx_rx_gain = ubx_rx_gain = 30
         self.ubx_rx_freq = ubx_rx_freq = 900e6
         self.samp_rate = samp_rate = 1e6

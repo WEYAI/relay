@@ -40,6 +40,9 @@ from gnuradio import qtgui
 class RKE_RELAY(gr.top_block, Qt.QWidget):
 
     def __init__(self):
+        aparse = argparse.ArgumentParser(description="Connection initiator test script for Sniffle BLE5 sniffer")
+        aparse.add_argument("-f", "--ubx_rx_freq", default=None, help="")
+        args = aparse.parse_args()
         gr.top_block.__init__(self, "RKE_RELAY")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("RKE_RELAY")
@@ -76,7 +79,8 @@ class RKE_RELAY(gr.top_block, Qt.QWidget):
         self.ubx_tx_gain = ubx_tx_gain = 30
         self.ubx_tx_freq = ubx_tx_freq = 900e6
         self.ubx_rx_gain = ubx_rx_gain = 30
-        self.ubx_rx_freq = ubx_rx_freq = 433.92e6
+        # self.ubx_rx_freq = ubx_rx_freq = 433.92e6  args.ubx_rx_freq
+        self.ubx_rx_freq = ubx_rx_freq = args.ubx_rx_freq
         self.samp_rate = samp_rate = 1e6
         self.offset = offset = 300e3
         self.lftx_freq = lftx_freq = 125e3
@@ -372,7 +376,6 @@ class RKE_RELAY(gr.top_block, Qt.QWidget):
 
 
 def main(top_block_cls=RKE_RELAY, options=None):
-
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')
         Qt.QApplication.setGraphicsSystem(style)
