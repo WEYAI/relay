@@ -7,18 +7,21 @@ import os
 import signal
 # server
 def handle_client(client_socket,request):
-    command = "python -u " + request["scriptCommand"]
-    if "sniff" in command:
-        command = "python -u " + request["scriptCommand"] + " -s COM18"
-    elif "" in command: 
-        pass
+    command = "sudo python3 -u " + request["scriptCommand"]
+    if "sniff_receiver" in command:
+        command = "sudo python3 -u " + request["scriptCommand"] + " -s COM18"
+    if "mc-mitm" in command:
+        command = request["scriptCommand"] 
     print(command)
     # args = request.split()[1]
-    process = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                universal_newlines=True)
     print("process run")
-    if "sniff" in command:
+    if "sniff_receiver" in command:
         time.sleep(3)
+        process.terminate()
+    elif "mc-mitm" in command:
+        time.sleep(5)
         process.terminate()
     output, error = process.communicate()
     print("进程输出。。。。。")

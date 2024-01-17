@@ -65,12 +65,22 @@ def main():
 
     # initiator doesn't care about this setting, it always accepts aux
     hw.cmd_auxadv(False)
-
+    # a2:1a:b3:41    41:b3:1a:a2
     # advertiser needs a MAC address
     # hw.random_addr()
-    # print('设置mac地址为：', args.mac)
-    # hw.cmd_setaddr(args.mac)
-    hw.cmd_setaddr(b"\xB3\x55\x44\x44\x55\xB3")
+    print('设置mac地址为：', args.mac)
+    array_mac = args.mac.split(":")
+    print("arraymac............")
+    print(array_mac)
+    reverse_mac = array_mac[::-1]
+    print(reverse_mac)
+    # arr = []
+    mac_str =  "\\x".join(reverse_mac)
+    mac_str = "\\x" + mac_str
+    print("mac_str.................")
+    print(mac_str)
+    hw.cmd_setaddr(mac_str)
+    # hw.cmd_setaddr(b"\xB3\x55\x44\x44\x55\xB3")
 
     # advertise roughly every 200 ms
     hw.cmd_adv_interval(200)
