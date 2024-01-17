@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #!/home/DP/ASIA/mc-mitm/mc-mitm-main/venv/bin/python3
 # Copyright (c) 2017-2023, Mathy Vanhoef <mathy.vanhoef@kuleuven.be>
 #

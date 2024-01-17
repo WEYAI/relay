@@ -3,8 +3,9 @@ import time
 
 # 定义要运行的一系列命令
 commands = [
-    "airmon-ng start wlan1",
-    "airodump-ng wlan1mon |python3 output.py",
+    "cd  /home/DP/ASIA/mc-mitm/mc-mitm-main",
+    "source venv/bin/activate",
+    "./mc-mitm.py wlan0 wlan1 XXX --target XX:XX:XX:XX:XX:XX",
     # 添加更多的命令...
 ]
 
