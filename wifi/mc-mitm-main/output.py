@@ -8,7 +8,7 @@ data = []
 mac_address_pattern = re.compile(r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$')
 # 测试例子
 
-for i in range(100):
+for i in range(1000):
     c = sys.stdin.readline()
     
     len_c = len(c)

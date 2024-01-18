@@ -5,6 +5,7 @@ import time
 commands = [
     "airmon-ng start wlan1",
     "airodump-ng wlan1mon |python3 output.py",
+    "airmon-ng stop  wlan1mon",
     # 添加更多的命令...
 ]
 
@@ -14,9 +15,11 @@ for command in commands:
     try:
             process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                universal_newlines=True)
-            if "airodump" in command:
-                time.sleep(5)
-                process.terminate()
+            # if "airodump" in command:
+            #     time.sleep(5)
+            #     process.terminate()
+            if "stop" in command:
+                  time.sleep(5)
             output, error = process.communicate() 
             print("进程输出。。。。。")
             print(output)
