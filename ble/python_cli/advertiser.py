@@ -81,7 +81,8 @@ def main():
     print(mac_str)
     hw.cmd_setaddr(mac_str)
     # hw.cmd_setaddr(b"\xB3\x55\x44\x44\x55\xB3")
-
+    # \xB3\x55\x44\x44\x55\xB3
+    #  B3:55:44:44:55:B3
     # advertise roughly every 200 ms
     hw.cmd_adv_interval(200)
 
